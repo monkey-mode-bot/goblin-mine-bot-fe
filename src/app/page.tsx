@@ -1,12 +1,10 @@
 "use client";
 
 import { Button, Card, CardBody, CardHeader, Spacer } from "@nextui-org/react";
+import { useTonConnectUI } from "@tonconnect/ui-react";
 
 export default function Home() {
-  const handlePayment = () => {
-    // Integrate your TON Space payment logic here
-    alert("TON Space payment process goes here.");
-  };
+  const [tonConnectUI] = useTonConnectUI();
 
   return (
     <div className="flex flex-col items-center justify-center h-screen px-5 py-10">
@@ -19,7 +17,11 @@ export default function Home() {
             Click the button below to initiate your payment with TON Space.
           </h5>
           <Spacer y={1.5} />
-          <Button size="lg" color="primary" onClick={handlePayment}>
+          <Button
+            size="lg"
+            color="primary"
+            onClick={() => tonConnectUI.openModal()}
+          >
             Pay with TON Space
           </Button>
         </CardBody>
